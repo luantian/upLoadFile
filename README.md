@@ -15,10 +15,10 @@
 |container|DOM|null|true||加载树结构的dom节点|
 |uploadType|String|'upload-banner'|false|['upload-banner',  'upload-long-img',  'upload-normal-img',  'upload-copywriting',   'upload-car-model']|生成上传插件的类型|
 |data|Object|{}|false||保存在formData的额外参数|
-|imgUrl|String|null|false||默认显示的图片地址|
-|mainTitle|String|null|false||车型主标题|
-|subTitle|String|null|false||车型副标题|
-|monthRent|String|null|false||车型月供|
+|imgUrl|String|''|false||默认显示的图片地址|
+|mainTitle|String|''|false||车型主标题|
+|subTitle|String|''|false||车型副标题|
+|monthRent|String|''|false||车型月供|
 |textareaValue|String|null|false||文案|
 |success|Function|null|false||上传成功的回调函数|
 |error|Function|null|false||上传失败的回调函数|
