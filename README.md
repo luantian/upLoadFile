@@ -1,7 +1,7 @@
 # 生成上传插件 
 ### 原生js，ajax需要依赖jquery，可以很轻松替换ajax方式
 
-### 使用实例, * 表示必传参数
+### 使用实例
 ```javascript
     $_$Upload({
         container: document.getElementById('wrap1'),
