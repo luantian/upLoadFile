@@ -21,9 +21,9 @@
 |textareaValue|String|null|false|文案|
 |success|Function|null|false|上传成功的回调函数|
 |error|Function|null|false|上传失败的回调函数|
-|uploadCallBack|Function|null|false|点击上传按钮的回调函数|
-|deleteCallBack|Function|null|false|点击删除按钮的回调函数|
-|submitCallBack|Function|null|false|点击提交按钮的回调函数|
+|uploadCallBack|Function|null|false|点击"上传"按钮的回调函数|
+|deleteCallBack|Function|null|false|点击"删除"按钮的回调函数|
+|submitCallBack|Function|null|false|点击"提交"按钮的回调函数|
 
 
 
