@@ -2,7 +2,7 @@
 * @Author: Terence
 * @Date:   2019-07-23 15:45:11
 * @Last Modified by:   Terence
-* @Last Modified time: 2019-07-24 20:55:34
+* @Last Modified time: 2019-07-25 01:59:26
 */
 
 ;(function() {
@@ -16,6 +16,7 @@
         this.wrap = params.container;
 
         if (!this.wrap) throw new Error('container为必传参数');
+        if (!this.url) throw new Error('url为必传参数');
         var types = ['upload-banner', 'upload-long-img', 'upload-normal-img', 'upload-copywriting', 'upload-car-model'];
         
         if ( types.includes(params.uploadType) ) {
@@ -185,8 +186,8 @@
         }
 
         $.ajax({
-            type:"POST",                             //请求的类型
-            url:"/user/test",                       //请求的路径
+            type: "POST",                             //请求的类型
+            url: _this.url,                       //请求的路径
             data: _this.formData,                   //请求的参数
             processData: false,
             contentType: false,
