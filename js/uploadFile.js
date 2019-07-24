@@ -2,7 +2,7 @@
 * @Author: Terence
 * @Date:   2019-07-23 15:45:11
 * @Last Modified by:   Terence
-* @Last Modified time: 2019-07-24 20:06:58
+* @Last Modified time: 2019-07-24 20:55:34
 */
 
 ;(function() {
@@ -86,7 +86,6 @@
                 // this.subTitle && (subInput.value = this.subTitle);
                 // this.monthRent && (monthInput.value = this.monthRent);
 
-
                 titleWrap1.appendChild(mainTitle);
                 titleWrap1.appendChild(mainInput);
 
@@ -167,12 +166,12 @@
 
     Upload.prototype.delete = function(e) {
         console.log('delete');
+        this.wrap.remove();
         this.deleteCallBack && this.deleteCallBack();
     }
 
     Upload.prototype.submit = function(e) {
-        if (!this.formData.get('file')) return alert('请先上传图片');
-
+        if (!this.formData) return alert('请先上传图片');
         var _this = this;
         this.submitCallBack && this.submitCallBack();
 
