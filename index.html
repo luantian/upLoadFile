@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传插件测试</title>
+    <link rel="stylesheet" type="text/css" href="css/uploadFile.css">
+    <style type="text/css">
+        
+    </style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script type="text/javascript" src="js/uploadFile.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            $_$Upload({
+                container: document.getElementById('wrap1'),
+                uploadType: 'upload-banner',
+            });
+            $_$Upload({
+                container: document.getElementById('wrap2'),
+                uploadType: 'upload-long-img'
+            });
+            $_$Upload({
+                container: document.getElementById('wrap3'),
+                uploadType: 'upload-normal-img'
+            });
+            $_$Upload({
+                container: document.getElementById('wrap4'),
+                uploadType: 'upload-copywriting'
+            });
+            $_$Upload({
+                container: document.getElementById('wrap5'),
+                uploadType: 'upload-car-model'
+            });
+        }
+    </script>
+</head>
+<body>
+
+    <div>
+        <h2>文档</h2>
+        <p>调用方式：$_$Upload()，参数类型: object</p>
+        <p>container: 必填参数，渲染目标节点</p>
+        <p>uploadType: 类型: string, 默认值: 'upload-banner', 可选值: ['upload-banner', 'upload-long-img', 'upload-normal-img', 'upload-copywriting', 'upload-car-model']</p>
+        <p>data：类型: 保存在formData的额外参数，</p>
+    </div>
+
+    <div id="wrap1"></div>
+    <div id="wrap2"></div>
+    <div id="wrap3"></div>
+    <div id="wrap4"></div>
+    <div id="wrap5"></div>
+    
+</body>
+</html>

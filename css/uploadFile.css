@@ -1,0 +1,119 @@
+[_id="upload-banner"] {
+    width: 750px;
+}
+
+[_id="upload-long-img"], [_id="upload-normal-img"], [_id="upload-copywriting"], [_id="upload-car-model"] {
+    width: 493px;
+}
+
+[_type="img"] {
+    display: block;
+    width: 100%;
+    border: 0;
+    vertical-align: middle;
+    outline: none;
+}
+
+[_id="banner"] {
+    height: 300px;
+}
+
+[_id="long-img"] {
+    height: 739px;
+}
+
+[_id="normal-img"], [_id="copywriting"], [_id="car-model"] {
+    height: 288px;
+}
+
+[_id="label"] {
+    display: inline-block;
+    width: 60px;
+    margin-bottom: 16px;
+    color: #222;
+    font-weight: bold;
+}
+
+[_id="title-input"] {
+    width: 390px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    resize: none;
+    margin: 0;
+    font-size: 14px;
+    color: #222;
+    transition: .2s;
+}
+
+[_id="title-input"]:focus {
+    border: 1px solid #1E4EFF;
+}
+
+[_id="textarea"] {
+    width: 470px;
+    height: 140px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    outline: none;
+    resize: none;
+    margin: 0;
+    font-size: 18px;
+    color: #222;
+    transition: .2s;
+}
+
+[_id="textarea"]:focus {
+    border: 1px solid #1E4EFF;
+}
+
+/**************************************************************/
+
+[_id="copywriting-title"], [_id="img-title"] {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+[_id="btns-wrap"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+[_id="upload-btn"], [_id="delete-btn"], [_id="submit-btn"] {
+    position: relative;
+    width: 80px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 6px;
+    background: #1E4EFF;
+    color: #fff;
+    cursor: pointer;
+    transition: .2s;
+    margin: 20px 20px 0 20px;
+}
+
+[_id="upload-btn"]:hover, [_id="delete-btn"]:hover, [_id="submit-btn"]:hover {
+    background: #5075FF;
+}
+
+[_id="input-file"] {
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: red;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    outline: none;
+    opacity: 0;
+    cursor: pointer;
+}
