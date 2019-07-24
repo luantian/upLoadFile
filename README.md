@@ -11,9 +11,9 @@
 ``` 
 ### 配置参数
 |param|type|default|need|description|enum|
-|:----:|:----:|:----:|:----:|:----:|
+|:----:|:----:|:----:|:----:|:----:|:----:|
 |container|DOM|null|true|加载树结构的dom节点||
-|uploadType|String|'upload-banner'|false|保存在formData的额外参数|'upload-banner', 'upload-long-img', 'upload-normal-img', 'upload-copywriting', 'upload-car-model'|
+|uploadType|String|'upload-banner'|false|保存在formData的额外参数|'upload-banner', 'upload-long-img', 'upload-normal-img','upload-copywriting', 'upload-car-model'|
 |data|Object|{}|false|保存在formData的额外参数||
 |imgUrl|String|null|false|默认显示的图片地址||
 |mainTitle|String|null|false|车型主标题||
