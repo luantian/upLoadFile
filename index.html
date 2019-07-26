@@ -14,27 +14,42 @@
             $_$Upload({
                 container: document.getElementById('wrap1'),
                 uploadType: 'upload-banner',
-                url: '/test'
+                url: '/test',
+                onDelete: function() {
+                    this.delete();
+                }
             });
             $_$Upload({
-                container: document.getElementById('wrap2'),
+                container: document.getElementById('wrap1'),
                 uploadType: 'upload-long-img',
-                url: '/test'
+                url: '/test',
+                onDelete: function() {
+                    this.delete();
+                }
             });
             $_$Upload({
-                container: document.getElementById('wrap3'),
+                container: document.getElementById('wrap1'),
                 uploadType: 'upload-normal-img',
-                url: '/test'
+                url: '/test',
+                onDelete: function() {
+                    this.delete();
+                }
             });
             $_$Upload({
-                container: document.getElementById('wrap4'),
+                container: document.getElementById('wrap1'),
                 uploadType: 'upload-copywriting',
-                url: '/test'
+                url: '/test',
+                onDelete: function() {
+                    this.delete();
+                }
             });
             $_$Upload({
-                container: document.getElementById('wrap5'),
+                container: document.getElementById('wrap1'),
                 uploadType: 'upload-car-model',
-                url: '/test'
+                url: '/test',
+                onDelete: function() {
+                    this.delete();
+                }
             });
         }
     </script>

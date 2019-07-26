@@ -2,7 +2,7 @@
 * @Author: Terence
 * @Date:   2019-07-23 15:45:11
 * @Last Modified by:   Terence
-* @Last Modified time: 2019-07-26 16:29:00
+* @Last Modified time: 2019-07-26 18:27:04
 */
 
 ;(function() {
@@ -153,10 +153,6 @@
         
     }
 
-    Upload.prototype.initDOM = function() {
-
-    }
-
     Upload.prototype.uploadFile = function(e, input) {
         var _this = this;
         var file = this.inputFile.files[0];
@@ -215,7 +211,8 @@
 
     Upload.prototype.delete = function(e) {
         console.log('delete');
-        this.wrap.remove();
+        console.log('this.typeLayer', this.typeLayer)
+        this.typeLayer.remove();
     }
 
     Upload.prototype.submit = function(e) {
