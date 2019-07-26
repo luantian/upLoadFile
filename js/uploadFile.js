@@ -2,7 +2,7 @@
 * @Author: Terence
 * @Date:   2019-07-23 15:45:11
 * @Last Modified by:   Terence
-* @Last Modified time: 2019-07-26 14:22:10
+* @Last Modified time: 2019-07-26 14:29:50
 */
 
 ;(function() {
@@ -26,7 +26,7 @@
             this.uploadType = types[0]; //设置uploadType默认值
         }
 
-        this.isShowUploadBtn = params.isShowUpload || true;
+        this.isShowUploadBtn = params.isShowUploadBtn || true;
         this.isShowDeleteBtn = params.isShowDeleteBtn || true;
         this.isShowSubmitBtn = params.isShowSubmitBtn || true;
         this.data = params.data || {};
@@ -60,9 +60,9 @@
         this.inputFile = setAttr( createDOM('input'), { _id: 'input-file', type: 'file' } );
 
         var _this = this;
-        var uploadBtn = /*( this.isShowUpLoadBtn || this.uploadCallBack ) &&*/ setAttr( createDOM('div'), { _id: 'upload-btn' }, this.uploadBtnName );
-        var deleteBtn = /*( this.isShowDeleteBtn || this.deleteCallBack ) &&*/ setAttr( createDOM('div'), { _id: 'delete-btn' }, this.deleteBtnName );
-        var submitBtn = /*( this.isShowSubmitBtn || this.submitCallBack ) &&*/ setAttr( createDOM('div'), { _id: 'submit-btn' }, this.submitBtnName );
+        var uploadBtn = this.isShowUploadBtn && setAttr( createDOM('div'), { _id: 'upload-btn' }, this.uploadBtnName );
+        var deleteBtn = this.isShowDeleteBtn && setAttr( createDOM('div'), { _id: 'delete-btn' }, this.deleteBtnName );
+        var submitBtn = this.isShowSubmitBtn && setAttr( createDOM('div'), { _id: 'submit-btn' }, this.submitBtnName );
 
         var btnsWrap = setAttr( createDOM('div'), { _id: 'btns-wrap' } );
  

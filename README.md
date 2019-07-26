@@ -23,10 +23,8 @@
 |textareaValue|String|null|false||文案|
 |success|Function|null|false||上传成功的回调函数|
 |error|Function|null|false||上传失败的回调函数|
+|onDelete|Function|null|false||点击"删除"按钮执行的函数|
 |uploadCallBack|Function|null|false||点击"上传"按钮的回调函数|
-|deleteCallBack|Function|null|false||点击"删除"按钮的回调函数|
 |submitCallBack|Function|null|false||点击"提交"按钮的回调函数|
-
-
 
 

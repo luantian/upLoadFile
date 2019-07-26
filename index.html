@@ -11,18 +11,18 @@
     <script type="text/javascript" src="js/uploadFile.js"></script>
     <script type="text/javascript">
         window.onload = function() {
-            // $_$Upload({
-            //     container: document.getElementById('wrap1'),
-            //     uploadType: 'upload-banner',
-            //     url: '/test'
-            // });
+            $_$Upload({
+                container: document.getElementById('wrap1'),
+                uploadType: 'upload-banner',
+                url: '/test',
+                onDelete: function() {
+                    
+                }
+            });
             $_$Upload({
                 container: document.getElementById('wrap2'),
                 uploadType: 'upload-long-img',
-                url: '/test',
-                onDelete: function() {
-                    console.log('this', this.delete());
-                }
+                url: '/test'
             });
             $_$Upload({
                 container: document.getElementById('wrap3'),
