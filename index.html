@@ -11,25 +11,33 @@
     <script type="text/javascript" src="js/uploadFile.js"></script>
     <script type="text/javascript">
         window.onload = function() {
-            $_$Upload({
-                container: document.getElementById('wrap1'),
-                uploadType: 'upload-banner',
-            });
+            // $_$Upload({
+            //     container: document.getElementById('wrap1'),
+            //     uploadType: 'upload-banner',
+            //     url: '/test'
+            // });
             $_$Upload({
                 container: document.getElementById('wrap2'),
-                uploadType: 'upload-long-img'
+                uploadType: 'upload-long-img',
+                url: '/test',
+                onDelete: function() {
+                    console.log('this', this.delete());
+                }
             });
             $_$Upload({
                 container: document.getElementById('wrap3'),
-                uploadType: 'upload-normal-img'
+                uploadType: 'upload-normal-img',
+                url: '/test'
             });
             $_$Upload({
                 container: document.getElementById('wrap4'),
-                uploadType: 'upload-copywriting'
+                uploadType: 'upload-copywriting',
+                url: '/test'
             });
             $_$Upload({
                 container: document.getElementById('wrap5'),
-                uploadType: 'upload-car-model'
+                uploadType: 'upload-car-model',
+                url: '/test'
             });
         }
     </script>

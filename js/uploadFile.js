@@ -2,7 +2,7 @@
 * @Author: Terence
 * @Date:   2019-07-23 15:45:11
 * @Last Modified by:   Terence
-* @Last Modified time: 2019-07-25 01:59:26
+* @Last Modified time: 2019-07-26 14:22:10
 */
 
 ;(function() {
@@ -14,6 +14,7 @@
     function Upload(params) {
 
         this.wrap = params.container;
+        this.url = params.url;
 
         if (!this.wrap) throw new Error('container为必传参数');
         if (!this.url) throw new Error('url为必传参数');
@@ -31,6 +32,8 @@
         this.data = params.data || {};
         this.imgUrl = params.imgUrl || 'www.baidu.com';
 
+        this.onDelete = params.onDelete;
+
         this.mainTitle = params.mainTitle || '';
         this.subTitle = params.subTitle || '';
         this.monthRent = params.monthRent || '';
@@ -38,7 +41,7 @@
 
         var btns = ['上传', '删除', '提交'];
         var btnsKey = ['uploadBtnName', 'deleteBtnName', 'submitBtnName'];
-        var btnCallBack = ['uploadCallBack', 'deleteCallBack', 'submitCallBack'];
+        var btnCallBack = ['uploadCallBack', 'submitCallBack'];
         for (var i = 0; i < btns.length; i++) {
             this[btnsKey[i]] = params[btnsKey[i]] || btns[i];
             this[btnCallBack[i]] = params[btnCallBack[i]];
@@ -99,7 +102,7 @@
                 break;
         }
         
-        var typeLayer = setAttr( createDOM('div'), { _id: this.uploadType } );
+        this.typeLayer = setAttr( createDOM('div'), { _id: this.uploadType } );
 
         if ( uploadBtn ) {
             uploadBtn.appendChild( this.inputFile );
@@ -109,32 +112,34 @@
         if ( submitBtn ) btnsWrap.appendChild( submitBtn );
 
         this.readyUploadImg = setAttr( createDOM('img'), { _id: this.uploadType.replace('upload-', ''), _type: 'img', src: this.imgUrl } );
+        this.readyUploadVideo = setAttr( createDOM('video'), { _id: this.uploadType.replace('upload-', ''), _type: 'video' } );
+
 
         switch (this.uploadType) {
             case 'upload-copywriting':
-                typeLayer.appendChild( copywritingTitle );
-                typeLayer.appendChild( textarea );
-                typeLayer.appendChild( imgTitle );
+                this.typeLayer.appendChild( copywritingTitle );
+                this.typeLayer.appendChild( textarea );
+                this.typeLayer.appendChild( imgTitle );
                 break;
             case 'upload-car-model':
-                typeLayer.appendChild( titleWrap1 );
-                typeLayer.appendChild( titleWrap2 );
-                typeLayer.appendChild( titleWrap3 );
+                this.typeLayer.appendChild( titleWrap1 );
+                this.typeLayer.appendChild( titleWrap2 );
+                this.typeLayer.appendChild( titleWrap3 );
                 break;
             default:
                 // statements_def
                 break;
         }
         
-        typeLayer.appendChild( this.readyUploadImg );
-        typeLayer.appendChild( btnsWrap );
-        this.wrap.appendChild( typeLayer );
+        this.typeLayer.appendChild( this.readyUploadImg );
+        this.typeLayer.appendChild( btnsWrap );
+        this.wrap.appendChild( this.typeLayer );
 
         this.inputFile.onchange = function() {
             _this.uploadFile();
         }
         deleteBtn.onclick = function() {
-            _this.delete();
+            _this.onDelete && _this.onDelete();
         }
         submitBtn.onclick = function() {
             _this.submit();
@@ -145,6 +150,9 @@
     Upload.prototype.uploadFile = function(e, input) {
         var _this = this;
         var file = this.inputFile.files[0];
+
+        console.log('file', file);
+
         // 确认选择的文件是图片                
         if(file.type.indexOf("image") == 0) {
             var reader = new FileReader();
@@ -154,6 +162,10 @@
                 var newUrl = this.result;
                 setAttr(_this.readyUploadImg, { src: newUrl });
             };
+        }
+
+        if (file.type.indexOf("mp4") >= 0) {
+            // this.readyUploadImg.remove();
         }
 
         this.formData = new FormData();
@@ -168,7 +180,6 @@
     Upload.prototype.delete = function(e) {
         console.log('delete');
         this.wrap.remove();
-        this.deleteCallBack && this.deleteCallBack();
     }
 
     Upload.prototype.submit = function(e) {
