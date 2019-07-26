@@ -27,4 +27,7 @@
 |uploadCallBack|Function|null|false||点击"上传"按钮的回调函数|
 |submitCallBack|Function|null|false||点击"提交"按钮的回调函数|
 
+###实例方法
+delete(); 删除当前节点
+
 
