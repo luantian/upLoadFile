@@ -2,7 +2,7 @@
 * @Author: Terence
 * @Date:   2019-07-23 15:45:11
 * @Last Modified by:   Terence
-* @Last Modified time: 2019-07-26 14:29:50
+* @Last Modified time: 2019-07-26 16:18:05
 */
 
 ;(function() {
@@ -19,6 +19,9 @@
         if (!this.wrap) throw new Error('container为必传参数');
         if (!this.url) throw new Error('url为必传参数');
         var types = ['upload-banner', 'upload-long-img', 'upload-normal-img', 'upload-copywriting', 'upload-car-model'];
+        this.imgTypes = ['png', 'jpg', 'jpeg', 'gif'];
+        this.videoTypes = ['avi', 'mov', 'rmvb', 'rm', 'flv', 'mp4', '3gp'];
+        this.pdfTypes = ['pdf'];
         
         if ( types.includes(params.uploadType) ) {
             this.uploadType = params.uploadType;
@@ -29,8 +32,9 @@
         this.isShowUploadBtn = params.isShowUploadBtn || true;
         this.isShowDeleteBtn = params.isShowDeleteBtn || true;
         this.isShowSubmitBtn = params.isShowSubmitBtn || true;
+
         this.data = params.data || {};
-        this.imgUrl = params.imgUrl || 'www.baidu.com';
+        this.imgUrl = params.imgUrl || 'www.baidu.png';
 
         this.onDelete = params.onDelete;
 
@@ -111,9 +115,12 @@
         if ( deleteBtn ) btnsWrap.appendChild( deleteBtn );
         if ( submitBtn ) btnsWrap.appendChild( submitBtn );
 
-        this.readyUploadImg = setAttr( createDOM('img'), { _id: this.uploadType.replace('upload-', ''), _type: 'img', src: this.imgUrl } );
-        this.readyUploadVideo = setAttr( createDOM('video'), { _id: this.uploadType.replace('upload-', ''), _type: 'video' } );
+        var fileType = '';
+        if ( isImg.call(this, this.imgUrl) ) { fileType = 'img' };
+        if ( isVideo.call(this, this.imgUrl) ) { fileType = 'video' };
+        if ( isPDF.call(this, this.imgUrl) ) { fileType = 'pdf' };
 
+        this.readyUploadType = setAttr( createDOM('img'), { _id: this.uploadType.replace('upload-', ''), _type: fileType, src: this.imgUrl } );
 
         switch (this.uploadType) {
             case 'upload-copywriting':
@@ -131,7 +138,7 @@
                 break;
         }
         
-        this.typeLayer.appendChild( this.readyUploadImg );
+        this.typeLayer.appendChild( this.readyUploadType );
         this.typeLayer.appendChild( btnsWrap );
         this.wrap.appendChild( this.typeLayer );
 
@@ -147,26 +154,57 @@
         
     }
 
+    Upload.prototype.initDOM = function() {
+
+    }
+
     Upload.prototype.uploadFile = function(e, input) {
         var _this = this;
         var file = this.inputFile.files[0];
 
-        console.log('file', file);
+        console.log('file', file.type);
+
 
         // 确认选择的文件是图片                
         if(file.type.indexOf("image") == 0) {
+            this.readyUploadType.remove();
+            if ( this.readyUploadVideo ) {
+                this.readyUploadVideo.remove();
+                this.readyUploadVideo = null;
+            }
+            var reader = new FileReader();
+            reader.readAsDataURL(file);                    
+            reader.onload = function(e) {
+                var newUrl = this.result;
+                if (_this.readyUploadImg) {
+                    setAttr(_this.readyUploadImg, { src: newUrl });
+                } else {
+                    _this.readyUploadImg = setAttr( createDOM('img'), { _id: _this.uploadType.replace('upload-', ''), _type: 'img', src: newUrl } );
+                    _this.typeLayer.insertBefore(_this.readyUploadImg, _this.typeLayer.lastChild);
+                }
+            };
+        }
+
+        if (file.type.indexOf("mp4") >= 0) {
+            this.readyUploadType.remove();
+            if ( this.readyUploadImg ) {
+                this.readyUploadImg.remove();
+                this.readyUploadImg = null;
+            }
             var reader = new FileReader();
             reader.readAsDataURL(file);                    
             reader.onload = function(e) {
                 // 图片base64化
                 var newUrl = this.result;
-                setAttr(_this.readyUploadImg, { src: newUrl });
+                if (_this.readyUploadVideo) {
+                    setAttr(_this.readyUploadVideo, { src: newUrl });
+                } else {
+                    _this.readyUploadVideo = setAttr( createDOM('video'), { _id: _this.uploadType.replace('upload-', ''), _type: 'video', src: newUrl, controls: "controls" } );
+                    _this.typeLayer.insertBefore(_this.readyUploadVideo, _this.typeLayer.lastChild);
+                }
             };
         }
 
-        if (file.type.indexOf("mp4") >= 0) {
-            // this.readyUploadImg.remove();
-        }
 
         this.formData = new FormData();
         this.formData.append('file', file);
@@ -225,6 +263,24 @@
 
         html && (el.innerHTML = html);
         return el;
+    }
+
+    function isImg(url) {
+        var type = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if ( this.imgTypes.includes(type) ) return true;
+        return false;
+    }
+
+    function isVideo(url) {
+        var type = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if ( this.videoTypes.includes(type) ) return true;
+        return false;
+    }
+
+    function isPDF(url) {
+        var type = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+        if ( this.pdfTypes.includes(type) ) return true;
+        return false;
     }
 
 
