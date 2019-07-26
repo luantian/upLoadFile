@@ -2,7 +2,7 @@
 * @Author: Terence
 * @Date:   2019-07-23 15:45:11
 * @Last Modified by:   Terence
-* @Last Modified time: 2019-07-26 16:18:05
+* @Last Modified time: 2019-07-26 16:29:00
 */
 
 ;(function() {
@@ -21,7 +21,6 @@
         var types = ['upload-banner', 'upload-long-img', 'upload-normal-img', 'upload-copywriting', 'upload-car-model'];
         this.imgTypes = ['png', 'jpg', 'jpeg', 'gif'];
         this.videoTypes = ['avi', 'mov', 'rmvb', 'rm', 'flv', 'mp4', '3gp'];
-        this.pdfTypes = ['pdf'];
         
         if ( types.includes(params.uploadType) ) {
             this.uploadType = params.uploadType;
@@ -118,7 +117,7 @@
         var fileType = '';
         if ( isImg.call(this, this.imgUrl) ) { fileType = 'img' };
         if ( isVideo.call(this, this.imgUrl) ) { fileType = 'video' };
-        if ( isPDF.call(this, this.imgUrl) ) { fileType = 'pdf' };
+        // if ( isPDF.call(this, this.imgUrl) ) { fileType = 'pdf' };
 
         this.readyUploadType = setAttr( createDOM('img'), { _id: this.uploadType.replace('upload-', ''), _type: fileType, src: this.imgUrl } );
 
@@ -185,7 +184,7 @@
             };
         }
 
-        if (file.type.indexOf("mp4") >= 0) {
+        if (file.type.indexOf("video") == 0) {
             this.readyUploadType.remove();
             if ( this.readyUploadImg ) {
                 this.readyUploadImg.remove();
@@ -209,7 +208,6 @@
         this.formData = new FormData();
         this.formData.append('file', file);
         this.formData.enctype = "multipart/form-data";
-
 
         this.uploadCallBack && this.uploadCallBack();
     }
@@ -277,11 +275,11 @@
         return false;
     }
 
-    function isPDF(url) {
-        var type = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
-        if ( this.pdfTypes.includes(type) ) return true;
-        return false;
-    }
+    // function isPDF(url) {
+    //     var type = url.substring(url.lastIndexOf('.') + 1).toLowerCase();
+    //     if ( this.pdfTypes.includes(type) ) return true;
+    //     return false;
+    // }
 
 
     if (typeof module !== 'undefined' && typeof exports === 'object') {
