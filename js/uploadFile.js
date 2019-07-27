@@ -2,7 +2,7 @@
 * @Author: Terence
 * @Date:   2019-07-23 15:45:11
 * @Last Modified by:   Terence
-* @Last Modified time: 2019-07-26 18:27:04
+* @Last Modified time: 2019-07-27 15:07:18
 */
 
 ;(function() {
@@ -114,12 +114,14 @@
         if ( deleteBtn ) btnsWrap.appendChild( deleteBtn );
         if ( submitBtn ) btnsWrap.appendChild( submitBtn );
 
-        var fileType = '';
+        var fileType = 'img';
         if ( isImg.call(this, this.imgUrl) ) { fileType = 'img' };
         if ( isVideo.call(this, this.imgUrl) ) { fileType = 'video' };
         // if ( isPDF.call(this, this.imgUrl) ) { fileType = 'pdf' };
 
-        this.readyUploadType = setAttr( createDOM('img'), { _id: this.uploadType.replace('upload-', ''), _type: fileType, src: this.imgUrl } );
+        var obj = { _id: this.uploadType.replace('upload-', ''), _type: fileType, src: this.imgUrl };
+        fileType == 'video' && obj.controls = 'controls';
+        this.readyUploadType = setAttr( createDOM(fileType), obj );
 
         switch (this.uploadType) {
             case 'upload-copywriting':
